@@ -6,7 +6,6 @@ from config import settings
 
 
 class MyUser(AbstractUser):
-    address = models.CharField(max_length=150, blank=True)
     balance = models.IntegerField(default=0)
     timezone = models.CharField(max_length=3,
                                 choices=[(str(number), pytz.all_timezones[number]) for number in

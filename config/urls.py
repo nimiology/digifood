@@ -43,6 +43,6 @@ urlpatterns = [
     # django debug toolbar
     path('__debug__/', include('debug_toolbar.urls')),
     # apps
-    path('user/', include('apps.users.urls')),
+    path('user/', include('apps.user.urls')),
 
 ]

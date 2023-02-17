@@ -3,7 +3,7 @@ from rest_framework.reverse import reverse
 from rest_framework.test import APITestCase
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from apps.users.models import MyUser
+from apps.user.models import MyUser
 
 
 def get_user_token(username):
@@ -18,7 +18,7 @@ class UserSearchTest(APITestCase):
                                                email='test@test.com', password='test')
 
     def test_user_search(self):
-        response = self.client.get(reverse('users:search'), {'first_name': 'John'})
+        response = self.client.get(reverse('user:search'), {'first_name': 'John'})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['results'][0]['first_name'], 'John')
 
@@ -29,10 +29,10 @@ class GetUserTest(APITestCase):
                                                email='test@test.com', password='test')
 
     def test_get_user(self):
-        response = self.client.get(reverse('users:get', kwargs={'username': 'John'}))
+        response = self.client.get(reverse('user:get', kwargs={'username': 'John'}))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['username'], 'John')
 
     def test_get_user_not_found(self):
-        response = self.client.get(reverse('users:get', kwargs={'username': 'John2'}))
+        response = self.client.get(reverse('user:get', kwargs={'username': 'John2'}))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)

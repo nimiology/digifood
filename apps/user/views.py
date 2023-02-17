@@ -1,7 +1,7 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
-from apps.users.models import MyUser
-from apps.users.serializers import MyUserSerializer
+from apps.user.models import MyUser
+from apps.user.serializers import MyUserSerializer
 
 
 class UserSearch(ListAPIView):

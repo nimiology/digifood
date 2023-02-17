@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class FoodsConfig(AppConfig):
+class RestaurantConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.foods'
+    name = 'apps.restaurant'

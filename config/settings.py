@@ -28,7 +28,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'users.MyUser'
+AUTH_USER_MODEL = 'user.MyUser'
 
 # Application definition
 
@@ -48,8 +48,11 @@ INSTALLED_APPS = [
     'drf_yasg',
     'debug_toolbar',
 
-    'apps.users',
-    'apps.foods',
+    'apps.user',
+    'apps.food',
+    'apps.order',
+    'apps.restaurant',
+    'apps.category'
 ]
 
 MIDDLEWARE = [
