@@ -20,6 +20,13 @@ class Food(models.Model):
     food_image4 = models.ImageField(upload_to=upload_file)
     food_image5 = models.ImageField(upload_to=upload_file)
 
+    def rating(self):
+        ratings = self.food_ratings.all()
+        sum = 0
+        for rating in ratings:
+            sum += int(rating.rating)
+        return sum / ratings.count()
+
 
 class FoodRating(models.Model):
     related_name = 'food_ratings'
@@ -39,4 +46,3 @@ class FoodRating(models.Model):
 
     class Meta:
         unique_together = ('owner', 'food')
-

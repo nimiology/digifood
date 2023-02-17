@@ -10,6 +10,13 @@ class Restaurant(models.Model):
     category = models.ManyToManyField(Category, blank=True, related_name='restaurant')
     image = models.ImageField(blank=True, null=True)
 
+    def rating(self):
+        ratings = self.restaurant_ratings.all()
+        sum = 0
+        for rating in ratings:
+            sum += int(rating.rating)
+        return sum / ratings.count()
+
 
 class RestaurantRating(models.Model):
     related_name = 'restaurant_ratings'
