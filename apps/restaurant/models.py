@@ -1,10 +1,13 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
+from apps.category.models import Category
+
 
 class Restaurant(models.Model):
     title = models.CharField(max_length=70)
     address = models.CharField(max_length=300)
+    category = models.ManyToManyField(Category, blank=True, related_name='restaurant')
     image = models.ImageField(blank=True, null=True)
 
 
