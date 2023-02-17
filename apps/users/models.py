@@ -3,7 +3,6 @@ from django.db import models
 import pytz
 
 from config import settings
-from users.utils import upload_file
 
 
 class MyUser(AbstractUser):

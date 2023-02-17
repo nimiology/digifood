@@ -1,6 +1,6 @@
 from django.urls import path
 
-from users.views import UserSearch, GetUser
+from apps.users.views import UserSearch, GetUser
 
 app_name = 'users'
 urlpatterns = [

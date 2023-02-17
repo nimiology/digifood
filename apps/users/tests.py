@@ -3,7 +3,7 @@ from rest_framework.reverse import reverse
 from rest_framework.test import APITestCase
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from users.models import MyUser
+from apps.users.models import MyUser
 
 
 def get_user_token(username):
