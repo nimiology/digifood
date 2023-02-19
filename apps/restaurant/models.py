@@ -31,7 +31,7 @@ class RestaurantRating(models.Model):
 
     owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name=related_name)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name=related_name)
-    rating = models.CharField(choices=rating_choices)
+    rating = models.CharField(max_length=1, choices=rating_choices)
     comment = models.CharField(max_length=300, null=True, blank=True)
 
     class Meta:

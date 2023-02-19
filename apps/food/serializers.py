@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from rest_framework.serializers import raise_errors_on_nested_writes
+from rest_framework.utils import model_meta
 
 from apps.category.models import Category
 from apps.category.serializers import CategorySerializer
@@ -11,11 +13,12 @@ class FoodSerializer(serializers.ModelSerializer):
         model = Food
         fields = [
             'id',
+            'restaurant',
             'title',
             'categories',
             'price',
             'delivery_time',
-            'bio',
+            'description',
             'calorie',
             'wishlist',
             'image',
@@ -30,12 +33,14 @@ class FoodSerializer(serializers.ModelSerializer):
     def to_internal_value(self, data):
         if 'categories' in data:
             for category in data['categories']:
-                Category.objects.get_or_create(id=category)
+                Category.objects.get_or_create(title=category)
         return super(FoodSerializer, self).to_internal_value(data)
 
     def to_representation(self, instance):
-        self.fields['categories'] = CategorySerializer()
+        self.fields['categories'] = CategorySerializer(many=True)
+        self.fields['wishlist'] = serializers.SlugRelatedField(slug_field='username', read_only=True, many=True)
         return super(FoodSerializer, self).to_representation(instance)
+
 
 
 class FoodRatingSerializer(serializers.ModelSerializer):

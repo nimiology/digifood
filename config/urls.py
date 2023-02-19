@@ -44,5 +44,5 @@ urlpatterns = [
     path('__debug__/', include('debug_toolbar.urls')),
     # apps
     path('user/', include('apps.user.urls')),
-
+    path('food/', include('apps.food.urls')),
 ]

@@ -17,7 +17,7 @@ class Food(models.Model):
     description = models.TextField(blank=True, null=True)
     calorie = models.IntegerField(default=0)
     wishlist = models.ManyToManyField(get_user_model(), blank=True, related_name='wishlist_food')
-    image = models.ImageField(upload_to=upload_file)
+    image = models.ImageField(upload_to=upload_file, blank=True, null=True)
     food_image1 = models.ImageField(upload_to=upload_file, blank=True, null=True)
     food_image2 = models.ImageField(upload_to=upload_file, blank=True, null=True)
     food_image3 = models.ImageField(upload_to=upload_file, blank=True, null=True)
@@ -29,7 +29,10 @@ class Food(models.Model):
         sum = 0
         for rating in ratings:
             sum += int(rating.rating)
-        return sum / ratings.count()
+        count = ratings.count()
+        if count == 0:
+            return 0
+        return sum / count
 
 
 class FoodRating(models.Model):
@@ -45,7 +48,7 @@ class FoodRating(models.Model):
 
     owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name=related_name)
     food = models.ForeignKey(Food, on_delete=models.CASCADE, related_name=related_name)
-    rating = models.CharField(choices=rating_choices)
+    rating = models.CharField(max_length=1, choices=rating_choices)
     comment = models.CharField(max_length=300, null=True, blank=True)
 
     class Meta:

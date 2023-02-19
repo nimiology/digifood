@@ -6,8 +6,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from apps.user.models import MyUser
 
 
-def get_user_token(username):
-    user = MyUser.objects.create(username=username, password='1234')
+def get_user_token(username, is_staff=False):
+    user = MyUser.objects.create(username=username, password='1234', is_staff=is_staff)
     refresh = RefreshToken.for_user(user)
     return user, f'Bearer {refresh.access_token}'
 
