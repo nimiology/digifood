@@ -8,7 +8,7 @@ from apps.restaurant.models import Restaurant
 from apps.user.tests import get_user_token
 
 
-class RePostAPITest(APITestCase):
+class FoodAPITest(APITestCase):
     def setUp(self) -> None:
         self.user, self.token = get_user_token('John', is_staff=True)
         self.client.credentials(HTTP_AUTHORIZATION=self.token)
