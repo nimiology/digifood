@@ -42,7 +42,6 @@ class FoodSerializer(serializers.ModelSerializer):
         return super(FoodSerializer, self).to_representation(instance)
 
 
-
 class FoodRatingSerializer(serializers.ModelSerializer):
     owner = MyUserSerializer(read_only=True)
 
