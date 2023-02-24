@@ -2,7 +2,6 @@ from rest_framework import status
 from django.urls import reverse
 from rest_framework.test import APITestCase
 
-from apps.category.models import Category
 from apps.food.models import Food, FoodRating
 from apps.restaurant.models import Restaurant
 from apps.user.tests import get_user_token

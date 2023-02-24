@@ -7,7 +7,7 @@ from apps.category.models import Category
 class Restaurant(models.Model):
     title = models.CharField(max_length=70)
     address = models.CharField(max_length=300)
-    category = models.ManyToManyField(Category, blank=True, related_name='restaurant')
+    categories = models.ManyToManyField(Category, blank=True, related_name='restaurant')
     image = models.ImageField(blank=True, null=True)
 
     def rating(self):
@@ -15,7 +15,10 @@ class Restaurant(models.Model):
         sum = 0
         for rating in ratings:
             sum += int(rating.rating)
-        return sum / ratings.count()
+        count = ratings.count()
+        if count:
+            return sum / ratings.count()
+        return 0
 
 
 class RestaurantRating(models.Model):

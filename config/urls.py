@@ -46,4 +46,5 @@ urlpatterns = [
     path('user/', include('apps.user.urls')),
     path('food/', include('apps.food.urls')),
     path('category/', include('apps.category.urls')),
+    path('restaurant/', include('apps.restaurant.urls')),
 ]
