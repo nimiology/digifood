@@ -56,11 +56,11 @@ class OrderAPITest(APITestCase):
         user, token = get_user_token('Steve', is_staff=True)
         self.client.credentials(HTTP_AUTHORIZATION=token)
         response = self.client.get(reverse('order:order', kwargs={'pk': self.order.pk}))
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_get_order(self):
         response = self.client.get(reverse('order:order', kwargs={'pk': self.order.pk}))
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_delete_order_not_owner(self):
         user, token = get_user_token('Steve')
@@ -116,11 +116,11 @@ class OrderAPITest(APITestCase):
         user, token = get_user_token('Steve', is_staff=True)
         self.client.credentials(HTTP_AUTHORIZATION=token)
         response = self.client.get(reverse('order:order_food', kwargs={'pk': self.order_food.pk}))
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_get_order_food(self):
         response = self.client.get(reverse('order:order_food', kwargs={'pk': self.order_food.pk}))
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_delete_order_food_not_owner(self):
         user, token = get_user_token('Steve')

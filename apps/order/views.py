@@ -29,8 +29,7 @@ class OrderListCreateAPIView(ListCreateAPIView):
 
 
 class OrderAPIView(RetrieveDestroyAPIView):
-    serializer_class = Order.objects.all()
-    serializer = OrderSerializer
+    serializer_class = OrderSerializer
 
     def get_queryset(self):
         if self.request.user.is_staff:
@@ -41,7 +40,7 @@ class OrderAPIView(RetrieveDestroyAPIView):
 class OrderFoodListCreateAPIView(ListCreateAPIView):
     serializer_class = OrderFoodSerializer
     filterset_fields = {
-        'owner': ['exact'],
+        'order': ['exact'],
         'count': ['exact', 'gte', 'lte', 'gt', 'lt'],
         'food': ['exact'],
         'instruction': ['contains'],
