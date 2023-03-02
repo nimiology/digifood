@@ -17,4 +17,4 @@ class OrderFood(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name=related_name)
     food = models.ForeignKey(Food, on_delete=models.CASCADE, related_name=related_name)
     count = models.PositiveIntegerField(default=1)
-    instruction = models.CharField(max_length=300)
+    instruction = models.CharField(max_length=300, blank=True, null=True)
