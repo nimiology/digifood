@@ -57,7 +57,7 @@ class FoodAPITest(APITestCase):
         user, token = get_user_token('John2')
         self.client.credentials(HTTP_AUTHORIZATION=token)
         response = self.client.patch(reverse('food:food', kwargs={'pk': self.food.pk}))
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_put(self):
         response = self.client.put(reverse('food:food', kwargs={'pk': self.food.pk}),
@@ -70,7 +70,7 @@ class FoodAPITest(APITestCase):
     def test_patch(self):
         response = self.client.patch(reverse('food:food', kwargs={'pk': self.food.pk}), data={
             'categories': ['ti']})
-        self.assertEqual(response.data['categories'], status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_get_all_foods(self):
         response = self.client.get(reverse('food:food'))

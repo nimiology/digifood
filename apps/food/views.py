@@ -3,6 +3,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveDestroyAPIView, R
     get_object_or_404, GenericAPIView
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.exceptions import MethodNotAllowed
 
 from apps.food.models import Food, FoodRating
 from apps.food.serializers import FoodSerializer, FoodRatingSerializer
@@ -37,9 +38,7 @@ class FoodAPIView(RetrieveUpdateDestroyAPIView):
         return super(FoodAPIView, self).put(request, *args, **kwargs)
 
     def patch(self, request, *args, **kwargs):
-        self.permission_classes = [IsAdminUser]
-        self.check_permissions(request)
-        return super(FoodAPIView, self).patch(request, *args, **kwargs)
+        raise MethodNotAllowed(method=request.method)
 
     def delete(self, request, *args, **kwargs):
         self.permission_classes = [IsAdminUser]
